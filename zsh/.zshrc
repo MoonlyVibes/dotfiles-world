@@ -1,0 +1,80 @@
+if [ -z "$TMUX" -a $(pgrep tmux | wc -l) -gt 1 ]; then
+    tmux
+elif [ -z "$TMUX" ]; then 
+    tmux attach || tmux
+fi
+
+stty -ixon
+bindkey -er '^s'
+[ "$TERM" = linux ] && export TERM=xterm-256color
+
+alias tree="tree -C"
+programs=("grep" "rg" "pacman" "auracle" "ls")
+for program in "${programs[@]}"; do
+    alias $program="$program --color=always"
+done
+
+alias cal='cal --monday'
+alias y='yazi'
+alias t='tmux'
+alias m='mullvad'
+
+alias rc='nvim ~/.zshrc'
+alias so='source ~/.zshrc'
+
+export PATH=~/.bin:$PATH:~/.cargo/bin
+export EDITOR=/usr/bin/nvim
+export LESS=iR
+export SYSTEMD_LESS=-iFRSXMK
+export MANPAGER='nvim +Man!'
+
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILE=~/.cmd_history
+setopt hist_ignore_all_dups hist_ignore_space
+setopt share_history
+setopt inc_append_history # write to the history file immediately, not when the shell exits
+
+autoload -Uz compinit && compinit -d "$HOME/.cache/zcompdump"
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' # case-insensitive
+eval $(dircolors)
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+_comp_options+=(globdots) # Include hidden files.
+
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect '^[[Z' reverse-menu-complete # shift-tab
+
+bindkey -e '^[[3~' delete-char # fix DEL
+bindkey '^p' history-beginning-search-backward # smart history 
+bindkey '^n' history-beginning-search-forward # smart history 
+
+eval "$(zoxide init --cmd cd zsh)"
+source <(fzf --zsh) # Set up fzf key bindings and fuzzy completion
+
+# shift-tab
+source $HOME/.config/zsh-fzf-tab/fzf-tab.plugin.zsh 
+
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666" #grey
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^[v" edit-command-line # edit command in vim
+
+
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats '(%b)'
+setopt prompt_subst
+CYAN='%F{cyan}'
+BOLD='%B'
+RESET='%f%b'
+PS1='${BOLD}${CYAN}%~${RESET} ${vcs_info_msg_0_}
+>> '

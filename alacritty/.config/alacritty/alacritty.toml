@@ -1,0 +1,4 @@
+[font]
+size = 13.5
+[general]
+import = [ "~/.config/alacritty/dark_plus.toml" ]

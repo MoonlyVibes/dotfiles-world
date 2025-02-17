@@ -1,0 +1,26 @@
+#!/bin/sh
+
+cachedir="${XDG_CACHE_HOME:-"$HOME/.cache"}"
+cache="$cachedir/dmenu_run_desktop"
+
+[ ! -e "$cachedir" ] && mkdir -p "$cachedir"
+
+dirs=""
+IFS=:
+for dir in "$HOME/.local/share" "/usr/share"; do
+    dirs="${dirs}:${dir}/applications"
+done
+
+# Check if cache needs to be updated or can be used
+if stest -dqr -n "$cache" $PATH; then
+    # Update cache by searching for applications and filtering results
+    stest -fl $dirs | grep -v 'mimeinfo.cache' | grep -v 'recently-used' | sed '/org.telegram.desktop.desktop/!s/\.[^./]*$//' | tee "$cache"
+else
+    cat "$cache"
+fi
+
+selected=$(cat "$cache" | dmenu "$@" | xargs)
+if [ -n "$selected" ]; then
+    gtk-launch "$selected" &
+fi
+

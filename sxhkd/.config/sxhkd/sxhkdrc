@@ -1,0 +1,30 @@
+mod4 + d
+    $HOME/.bin/dmenu_run_desktop -i -b -nb "#161616" -sb "#333333" -fn "JetBrainsMonoNerdFont-12"
+mod4 + p
+    $HOME/.bin/dmenu_power.sh -i -b -nb '#161616' -sb '#333333' -fn "JetBrainsMonoNerdFont-12"
+ctrl + q
+    copyq show
+Print
+	flameshot gui
+mod4 + g
+    $HOME/.bin/grayscale.sh
+
+XF86MonBrightnessUp
+	xbacklight -inc 5
+XF86MonBrightnessDown
+	xbacklight -dec 5
+
+XF86AudioRaiseVolume 
+	pactl set-sink-volume @DEFAULT_SINK@ +10% 
+XF86AudioLowerVolume 
+	pactl set-sink-volume @DEFAULT_SINK@ -10% 
+XF86AudioMute 
+	pactl set-sink-mute @DEFAULT_SINK@ toggle 
+XF86AudioMicMute 
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# external kbd FNs
+XF86AudioStop
+	xbacklight -dec 5
+XF86AudioPrev
+	xbacklight -inc 5
