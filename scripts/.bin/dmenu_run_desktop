@@ -5,11 +5,8 @@ cache="$cachedir/dmenu_run_desktop"
 
 [ ! -e "$cachedir" ] && mkdir -p "$cachedir"
 
-dirs=""
 IFS=:
-for dir in "$HOME/.local/share" "/usr/share"; do
-    dirs="${dirs}:${dir}/applications"
-done
+dirs="$HOME/.local/share/applications:/usr/share/applications"
 
 # Check if cache needs to be updated or can be used
 if stest -dqr -n "$cache" $PATH; then
@@ -19,8 +16,5 @@ else
     cat "$cache"
 fi
 
-selected=$(cat "$cache" | dmenu "$@" | xargs)
-if [ -n "$selected" ]; then
-    gtk-launch "$selected" &
-fi
-
+selected=$(dmenu "$@" < "$cache" | xargs)
+[ -n "$selected" ] && gtk-launch "$selected" &

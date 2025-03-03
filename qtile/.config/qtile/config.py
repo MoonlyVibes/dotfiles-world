@@ -58,26 +58,15 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    Key(
-        [mod, "shift"],
-        "Return",
-        lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack",
-    ),
+    Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
-    Key(
-        [mod],
-        "f",
-        lazy.window.toggle_fullscreen(),
-        desc="Toggle fullscreen on the focused window",
-    ),
+    Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-    # Key(["mod1"], "Shift_L", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -85,9 +74,9 @@ groups = [Group(i) for i in "123456789"]
 for i in groups:
     keys.extend(
         [
-            Key( [mod], i.name, lazy.group[i.name].toscreen(), desc="Switch to group {}".format(i.name),),
-            Key( [mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True,), 
-                desc="Switch to & move focused window to group {}".format(i.name),),
+            Key([mod], i.name, lazy.group[i.name].toscreen(), desc="Switch to group {}".format(i.name)),
+            Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True,), 
+                desc="Switch to & move focused window to group {}".format(i.name)),
         ]
     )
 
@@ -97,14 +86,14 @@ layouts = [
         border_normal_stack="#000000",
         border_focus="#777777",
         border_normal="#000000",
-        border_width=2,
+        border_width=3,
         insert_position=1, # attachbelow
     ),
     layout.Max(),
 ]
 
 widget_defaults = dict(
-    font="JetBrainsMono NF",
+    font="monospace",
     fontsize=18,
     padding=2,
 )
@@ -125,7 +114,6 @@ screens = [
                     disable_drag=True,
                     this_current_screen_border="#ffffff",
                     highlight_method="line",
-                    highlight_color=["#000000", "#000000", "#000000", "#ffffff"],
                 ),
                 widget.Sep(
                     padding=10,
@@ -133,13 +121,11 @@ screens = [
                 ),
                 widget.Prompt(),
                 widget.WindowTabs(
-                    separator="  ||  ",
                     selected=("<u>", "</u>"),
+                    separator="  |  ",
                     parse_text=shorten_window_name,
                     mouse_callbacks={"Button1": lazy.layout.next()},
                 ),
-                # widget.KeyboardLayout(configured_keyboards=['us','ru']),
-                # widget.Sep(padding=11, linewidth=2,),
                 widget.Battery(
                     format="{char} {percent:2.0%}",
                     show_short_text=False,

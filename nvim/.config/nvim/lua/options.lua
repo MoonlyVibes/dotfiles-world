@@ -17,6 +17,7 @@ vim.opt.undofile = true
 vim.opt.updatetime = 250
 
 vim.g.netrw_banner = 0
+vim.g.netrw_bufsettings = "rnu"
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
@@ -30,7 +31,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
             timeout = 60,
         })
     end,
-    })
+})
 
 vim.g.clipboard = {
     name = "xclip",

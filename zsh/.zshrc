@@ -1,3 +1,5 @@
+[ "$TERM" = linux ] && export TERM=xterm-256color
+
 if [ -z "$TMUX" -a $(pgrep tmux | wc -l) -gt 1 ]; then
     tmux
 elif [ -z "$TMUX" ]; then 
@@ -6,10 +8,9 @@ fi
 
 stty -ixon
 bindkey -er '^s'
-[ "$TERM" = linux ] && export TERM=xterm-256color
 
 alias tree="tree -C"
-programs=("grep" "rg" "pacman" "auracle" "ls")
+programs=("grep" "rg" "pacman" "auracle" "ls" "diff")
 for program in "${programs[@]}"; do
     alias $program="$program --color=always"
 done
@@ -18,6 +19,7 @@ alias cal='cal --monday'
 alias y='yazi'
 alias t='tmux'
 alias m='mullvad'
+alias vim='nvim'
 
 alias rc='nvim ~/.zshrc'
 alias so='source ~/.zshrc'
@@ -52,6 +54,7 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete # shift-tab
 bindkey -e '^[[3~' delete-char # fix DEL
 bindkey '^p' history-beginning-search-backward # smart history 
 bindkey '^n' history-beginning-search-forward # smart history 
+WORDCHARS=${WORDCHARS/\/} # smart ^w
 
 eval "$(zoxide init --cmd cd zsh)"
 source <(fzf --zsh) # Set up fzf key bindings and fuzzy completion
@@ -77,4 +80,4 @@ CYAN='%F{cyan}'
 BOLD='%B'
 RESET='%f%b'
 PS1='${BOLD}${CYAN}%~${RESET} ${vcs_info_msg_0_}
->> '
+-> '

@@ -1,7 +1,7 @@
 mod4 + d
-    $HOME/.bin/dmenu_run_desktop -i -b -nb "#161616" -sb "#333333" -fn "JetBrainsMonoNerdFont-12"
+    $HOME/.bin/dmenu_run_desktop -i -b -nb "#000000" -sb "#333333" -fn "monospace-12"
 mod4 + p
-    $HOME/.bin/dmenu_power.sh -i -b -nb '#161616' -sb '#333333' -fn "JetBrainsMonoNerdFont-12"
+    $HOME/.bin/dmenu_power.sh -i -b -nb '#000000' -sb '#333333' -fn "monospace-12"
 ctrl + q
     copyq show
 Print

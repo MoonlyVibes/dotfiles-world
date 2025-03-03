@@ -1,4 +1,4 @@
 Xft.dpi: 130
-Nsxiv.window.background: #1E1E1E
+Nsxiv.window.background: #000000
 Nsxiv.window.foreground: #ffffff
-Nsxiv.bar.font: JetBrainsMonoNerdFontMono-11
+Nsxiv.bar.font: monospace-11

@@ -1,4 +1,30 @@
 [font]
 size = 13.5
-[general]
-import = [ "~/.config/alacritty/dark_plus.toml" ]
+normal = { family = "JetBrainsMonoNL NF", style = "Light" }
+
+[colors.primary]
+background = "#1e1e1e"
+foreground = "#d4d4d4"
+
+[colors.normal]
+black   = "#333333"
+red     = "#ed4a46"
+green   = "#70b433"
+yellow  = "#dbb32d"
+blue    = "#3498db"
+magenta = "#eb6eb7"
+cyan    = "#3fc5b7"
+white   = "#777777"
+
+[colors.bright]
+black   = "#555555"
+red     = "#ff5e56"
+green   = "#83c746"
+yellow  = "#efc541"
+blue    = "#4f9cfe"
+magenta = "#ff81ca"
+cyan    = "#56d8c9"
+white   = "#dedede"
+[colors]
+selection = { text = "CellForeground", background = "#3b3b3b" }
+cursor = { text = "CellBackground", cursor = "#d4d4d4" }
