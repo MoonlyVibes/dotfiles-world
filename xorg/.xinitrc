@@ -13,9 +13,8 @@ numlockx &
 sxhkd &
 nm-applet &
 udiskie &
-picom &
 copyq &
-dunst &
-# xss-lock --ignore-sleep -- slock &
+# xss-lock --ignore-sleep -- slock & #Gets triggered on standby autolock :(
 # xautolock -time 20 -locker "systemctl suspend" -detectsleep &
+~/.bin/ArchPackages.sh &
 exec qtile start

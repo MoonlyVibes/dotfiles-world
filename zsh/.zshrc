@@ -1,9 +1,11 @@
 [ "$TERM" = linux ] && export TERM=xterm-256color
 
-if [ -z "$TMUX" -a $(pgrep tmux | wc -l) -gt 1 ]; then
-    tmux
-elif [ -z "$TMUX" ]; then 
-    tmux attach || tmux
+if [ -z "$TMUX" ]; then
+    if [ $(pgrep -c tmux) -gt 1 ]; then
+        tmux new
+    else
+        tmux attach 2> /dev/null || tmux new
+    fi
 fi
 
 stty -ixon
@@ -16,10 +18,18 @@ for program in "${programs[@]}"; do
 done
 
 alias cal='cal --monday'
+alias pss='pgrep -ia' #-alf
+alias du='du -sh'
 alias y='yazi'
 alias t='tmux'
-alias m='mullvad'
-alias vim='nvim'
+alias vi='nvim'
+alias v='vi'
+alias top='btop'
+alias cat='bat --style=grid'
+alias ca='/usr/bin/cat'
+alias xclip='xclip -selection clipboard'
+alias mk='makepkg -sic'
+setopt autocd # alias ..='cd ..'
 
 alias rc='nvim ~/.zshrc'
 alias so='source ~/.zshrc'
@@ -30,8 +40,7 @@ export LESS=iR
 export SYSTEMD_LESS=-iFRSXMK
 export MANPAGER='nvim +Man!'
 
-export HISTSIZE=10000
-export SAVEHIST=10000
+export HISTSIZE=10000 SAVEHIST=10000
 export HISTFILE=~/.cmd_history
 setopt hist_ignore_all_dups hist_ignore_space
 setopt share_history
@@ -80,4 +89,4 @@ CYAN='%F{cyan}'
 BOLD='%B'
 RESET='%f%b'
 PS1='${BOLD}${CYAN}%~${RESET} ${vcs_info_msg_0_}
--> '
+${BOLD}>${RESET} '

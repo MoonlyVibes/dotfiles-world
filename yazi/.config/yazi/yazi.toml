@@ -1,0 +1,8 @@
+[manager]
+ratio          = [ 1, 3, 3 ]
+[preview]
+wrap           = "yes"
+image_delay    = 0
+[opener]
+# add orphan option to detach form shell
+open = [ { run = 'xdg-open "$1"', orphan = true, desc = "Open", for = "linux" }, ]

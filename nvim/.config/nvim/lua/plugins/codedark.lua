@@ -1,12 +1,26 @@
 return {
-    "tomasiser/vim-code-dark",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
+    "Mofiqul/vscode.nvim",
+    dependencies = { "tomasiser/vim-code-dark" },
+    lazy = false,
+    priority = 1000,
     config = function()
-        -- load the colorscheme here
-        vim.cmd([[let g:codedark_italics=1]])
-        vim.cmd([[colorscheme codedark]])
-        vim.cmd([[hi CursorLine guibg=#272727]])
-        vim.cmd([[highlight NormalFloat guibg=none]])
-    end,
+        require('vscode').setup({ italic_comments = true, })
+        vim.cmd.colorscheme("vscode")
+        vim.cmd([[
+        highlight Normal guibg=none guifg=#d4d4d4
+        highlight NormalFloat guibg=none
+        highlight LineNr guibg=none
+        highlight CursorLine guibg=#272727
+        "highlight! link @markup.raw @property
+        highlight! link @markup.raw @function
+        highlight! link CursorLineNr Normal
+
+        highlight! link @variable Normal
+        highlight! link @variable.parameter Normal
+        highlight! link @operator @keyword.import " >= >> + -
+]])
+        for _, i in ipairs({ "Prompt", "Preview", "Results" }) do
+            vim.cmd("highlight! link Telescope" .. i .. "Border Normal")
+        end
+    end
 }

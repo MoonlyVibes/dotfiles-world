@@ -1,4 +1,5 @@
 return {
     "norcalli/nvim-colorizer.lua",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
+    cmd = { "ColorizerToggle" }
 }

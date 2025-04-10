@@ -3,7 +3,9 @@ return {
     build = ":TSUpdate",
     config = function()
         require("nvim-treesitter.configs").setup({
-            ensure_installed = { "rust", "c", "cpp", "python", "lua", "vim", "vimdoc", "bash", "query", "markdown", "markdown_inline" },
+            ensure_installed = {
+                "rust", "c", "cpp", "python", "lua", "vim", "vimdoc", "bash", "query", "markdown", "markdown_inline"
+            },
             sync_install = false,
             highlight = {
                 enable = true,
@@ -14,8 +16,8 @@ return {
                         return true
                     end
                 end,
-                -- additional_vim_regex_highlighting = false,
-                additional_vim_regex_highlighting = { 'markdown', 'markdown_inline' },
+                additional_vim_regex_highlighting = false,
+                -- additional_vim_regex_highlighting = { 'markdown', 'markdown_inline' },
             },
             indent = { enable = true, },
         })

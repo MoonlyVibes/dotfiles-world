@@ -1,6 +1,7 @@
 -- Compile & Run
 vim.keymap.set('n', '<F5>', function()
-    local file = vim.fn.expand('%:p')
+    -- local file = vim.fn.expand('%:p')
+    local file = vim.fn.expand('%')
     local file_extension = vim.fn.expand("%:e")
 
     if file_extension == "rs" then

@@ -1,3 +1,4 @@
-require ("options")
-require ("keymaps")
+-- set winborder=rounded
+require("options")
+require("keymaps")
 require("config.lazy")

@@ -1,5 +1,5 @@
 if os.getenv("TERM") ~= "linux" then
-vim.opt.title = true
+    vim.opt.title = true
 end
 vim.opt.guicursor = ""
 vim.opt.cursorline = true
@@ -17,7 +17,23 @@ vim.opt.undofile = true
 vim.opt.updatetime = 250
 
 vim.g.netrw_banner = 0
-vim.g.netrw_bufsettings = "rnu"
+vim.g.netrw_bufsettings = "noma nomod nonu nowrap ro nobl rnu" -- defaults + rnu
+
+-- vim.opt.viewoptions = "folds" -- don't capture anything besides folds (default "folds,cursor,curdir")
+local fold = { "*.rs", "*.cpp", "*.c", "*.py" }
+vim.api.nvim_create_autocmd("BufWinLeave", {
+    pattern = fold,
+    command = "mkview"
+})
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    pattern = fold,
+    command = "silent! loadview"
+})
+
+vim.api.nvim_create_autocmd("TermOpen", {
+    pattern = "*",
+    command = "startinsert",
+})
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
