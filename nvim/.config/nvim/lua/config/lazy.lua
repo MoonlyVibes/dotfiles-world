@@ -18,16 +18,15 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
     spec = {
-        -- { import = "plugins_vscode" },
-        { import = "plugins", cond = (function() return not vim.g.vscode end) },
+        { import = "plugins" },
     },
     -- colorscheme that will be used when installing plugins.
-    install = { colorscheme = { "codedark" } },
+    install = { colorscheme = { "default" } },
     ui = { border = "rounded" },
     change_detection = { notify = false },
     -- automatically check for plugin updates
     checker = {
-        frequency = 604800,
+        frequency = 604800, -- update only once a week + mason!
         enabled = true
     },
 })

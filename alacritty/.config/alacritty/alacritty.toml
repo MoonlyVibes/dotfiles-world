@@ -1,5 +1,5 @@
 [font]
-size = 13.5
+size = 13
 normal = { family = "JetBrainsMonoNL NF", style = "Light" }
 
 [colors.primary]
@@ -24,7 +24,7 @@ yellow  = "#efc541"
 blue    = "#4f9cfe"
 magenta = "#ff81ca"
 cyan    = "#56d8c9"
-white   = "#dedede"
+white   = "#d4d4d4"
 [colors]
 selection = { text = "CellForeground", background = "#3b3b3b" }
 cursor = { text = "CellBackground", cursor = "#d4d4d4" }

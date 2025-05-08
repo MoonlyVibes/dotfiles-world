@@ -1,6 +1,4 @@
-if os.getenv("TERM") ~= "linux" then
-    vim.opt.title = true
-end
+vim.opt.title = true
 vim.opt.guicursor = ""
 vim.opt.cursorline = true
 vim.opt.ignorecase = true; vim.opt.smartcase = true
@@ -23,11 +21,11 @@ vim.g.netrw_bufsettings = "noma nomod nonu nowrap ro nobl rnu" -- defaults + rnu
 local fold = { "*.rs", "*.cpp", "*.c", "*.py" }
 vim.api.nvim_create_autocmd("BufWinLeave", {
     pattern = fold,
-    command = "mkview"
+    command = "mkview",
 })
 vim.api.nvim_create_autocmd("BufWinEnter", {
     pattern = fold,
-    command = "silent! loadview"
+    command = "silent! loadview",
 })
 
 vim.api.nvim_create_autocmd("TermOpen", {
@@ -38,6 +36,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
     command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
+    desc = "fix o"
 })
 
 vim.api.nvim_create_autocmd('TextYankPost', {

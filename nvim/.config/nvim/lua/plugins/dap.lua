@@ -98,7 +98,7 @@ return {
                 type = "cppdbg",
                 request = "launch",
                 program = function()
-                    local out_file = vim.fn.expand('%:p:h') .. [[/\%]] .. vim.fn.expand('%:t:r')
+                    local out_file = vim.fn.expand('%:p:h') .. '/_' .. vim.fn.expand('%:t:r')
                     return out_file
                 end,
                 cwd = '${workspaceFolder}',

@@ -8,8 +8,11 @@ require('config.compile-run-code')
 vim.keymap.set('t', '<C-j>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 vim.keymap.set('n', '-', '<cmd>Explore<CR>', { desc = 'Netrw' })
+vim.keymap.set('n', '<leader>cd', ':lcd %:p:h | pwd <CR>', { desc = 'lcd to current file' })
 
 vim.keymap.set('n', '<esc>', '<cmd>noh<CR>')
+vim.keymap.set('n', '<C-D>', '<C-D>zz')
+vim.keymap.set('n', '<C-U>', '<C-U>zz')
 
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })

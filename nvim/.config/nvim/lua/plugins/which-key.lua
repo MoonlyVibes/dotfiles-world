@@ -1,11 +1,15 @@
 return {
     "folke/which-key.nvim",
     event = "VeryLazy",
+    dependencies = {
+        "nvim-tree/nvim-web-devicons",
+        opts = {
+            default = true,
+        }
+    },
     opts = {
         spec = {
             { '<leader>d', group = 'Dap' },
-            { '<leader>f', group = 'Telescope' },
-            { '<leader>x', group = 'Trouble' },
         },
         win = { border = 'rounded' },
         -- disable for c, d, y
@@ -17,7 +21,6 @@ return {
             return vim.list_contains({ "<C-V>", "V" }, ctx.mode)
         end,
     },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
         {
             "<leader>?",

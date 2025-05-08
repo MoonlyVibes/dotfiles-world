@@ -1,12 +1,14 @@
 return {
     'saghen/blink.cmp',
-    -- enabled = false,
+    event = "InsertEnter",
     dependencies = { 'rafamadriz/friendly-snippets' },
     version = '1.*', -- use a release tag to download pre-built binaries
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
+        -- disable for $(:set filetype?)
+        enabled = function() return not vim.tbl_contains({ "markdown", "org" }, vim.bo.filetype) end,
         keymap = {
             preset = 'default',
             ['<C-p>'] = { 'select_prev', 'snippet_backward', 'fallback_to_mappings' },
@@ -21,7 +23,6 @@ return {
         completion = {
             menu = {
                 border = 'rounded',
-                -- winhighlight =
             },
             documentation = {
                 auto_show = true,

@@ -24,7 +24,7 @@ XF86AudioMicMute
 	pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # external kbd FNs
-XF86AudioStop
-	xbacklight -dec 5
-XF86AudioPrev
-	xbacklight -inc 5
+Insert
+    xbacklight -dec 5
+Scroll_Lock
+    xbacklight -inc 5

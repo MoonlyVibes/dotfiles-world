@@ -4,8 +4,6 @@ return {
         auto_close = true,       -- auto close when there are no items
         focus = true,            -- Focus the window when opened
         warn_no_results = false, -- show a warning when there are no results
-
-        -- auto_jump = true,      -- auto jump to the item when there's only one
         -- open_no_results = false, -- open the trouble window when there are no results
     },
     cmd = "Trouble",
@@ -14,15 +12,16 @@ return {
             "<leader>t",
             "<cmd>Trouble<cr>",
             desc = "Toggle Trouble",
-        }, {
+        },
+        {
             "<leader>xx",
-            "<cmd>Trouble diagnostics toggle<cr>",
-            desc = "LSP Diagnostics (Trouble)",
+            "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+            desc = "LSP Buffer Diagnostics (Trouble)",
         },
         {
             "<leader>xX",
-            "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-            desc = "LSP Buffer Diagnostics (Trouble)",
+            "<cmd>Trouble diagnostics toggle<cr>",
+            desc = "LSP Diagnostics (Trouble)",
         },
         {
             "gd",
@@ -32,6 +31,7 @@ return {
         {
             "gr",
             "<cmd>Trouble lsp_references toggle focus=true<cr>",
+            nowait = true,
             desc = "LSP References (Trouble)",
         },
         {

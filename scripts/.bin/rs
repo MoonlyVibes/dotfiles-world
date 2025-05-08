@@ -1,0 +1,31 @@
+#!/bin/sh
+
+SESSION="rs"
+WIN_NAME_1="lings" WIN_PATH_1="$HOME/rust/rustlings/"
+WIN_NAME_2="test" WIN_PATH_2="$HOME/rust/"
+
+NEW() {
+    tmux new-window -d -n "$1" -c "$2" -b ${3:-}
+}
+NEW_S() {
+    tmux new-session -d -s $SESSION -n "$1" -c "$2"
+}
+
+if ! tmux has-session -t $SESSION 2>/dev/null; then
+    if [ -n "$TMUX" ]; then
+        tmux rename-session $SESSION
+        tmux renamew tmp
+        NEW "$WIN_NAME_1" "$WIN_PATH_1"
+        NEW "$WIN_NAME_2" "$WIN_PATH_2"
+        tmux select-window -t "$WIN_NAME_1"
+        tmux killw -t tmp
+    else
+        NEW_S "$WIN_NAME_2" "$WIN_PATH_2"
+        NEW "$WIN_NAME_1" "$WIN_PATH_1"
+        tmux select-window -t "$WIN_NAME_1"
+        tmux attach -t $SESSION
+    fi
+else
+    tmux attach -t $SESSION 2>/dev/null || echo "$SESSION already exists: try C-s + w"
+    # tmux switch-client
+fi
